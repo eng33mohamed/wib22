@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>موقعي - المقالات والصور</title>
+    <style>
+        body { font-family: Arial, sans-serif; direction: rtl; text-align: right; }
+        .container { width: 80%; margin: auto; }
+        .article { border-bottom: 1px solid #ccc; padding: 15px; }
+        img { max-width: 100%; height: auto; }
+        .add-content { margin: 20px 0; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>مرحبًا بك في موقعي</h1>
+        <div class="add-content">
+            <h2>أضف مقالًا جديدًا</h2>
+            <input type="text" id="title" placeholder="عنوان المقال">
+            <input type="text" id="image" placeholder="رابط الصورة">
+            <textarea id="content" placeholder="اكتب المحتوى هنا..."></textarea>
+            <button onclick="addArticle()">إضافة</button>
+        </div>
+        <h2>المقالات:</h2>
+        <div id="articles"></div>
+    </div>
+
+    <script>
+        function addArticle() {
+            let title = document.getElementById('title').value;
+            let image = document.getElementById('image').value;
+            let content = document.getElementById('content').value;
+            
+            if(title && content) {
+                let articleDiv = document.createElement('div');
+                articleDiv.classList.add('article');
+                
+                articleDiv.innerHTML = `<h3>${title}</h3>` +
+                                      (image ? `<img src="${image}" alt="صورة المقال">` : '') +
+                                      `<p>${content}</p>`;
+                
+                document.getElementById('articles').appendChild(articleDiv);
+                
+                document.getElementById('title').value = '';
+                document.getElementById('image').value = '';
+                document.getElementById('content').value = '';
+            } else {
+                alert("يرجى ملء جميع الحقول المطلوبة!");
+            }
+        }
+    </script>
+</body>
+</html>
